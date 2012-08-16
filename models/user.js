@@ -7,7 +7,7 @@
  
   },
   {
-    ?? Class methods
+    // Class methods
     getCurrentUser: function(){
       return $("#userbox #user a.name").text();
     }
