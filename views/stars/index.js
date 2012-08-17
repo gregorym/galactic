@@ -14,24 +14,18 @@
     self.events = {
     };
 
-
-    // Load all watched repositories
-    // and render all of them in the page
-    function allStarredRepositories(mode) {
-      var last_page_number  = _.max( _.map($el.find(".pagination a"), function(a){ parseInt($(a).text()) }) );
-      var url               = "https://api.github.com/users/" + app.current_user + "/watched?page";
-      for (var i = 1; i = last_page_number; i++) {
-        $.getJSON( (url+i, function(data){
-          // Remove child of the wrapper, will be replaced by new list.
-          if (i === 1) { $wrapper.append(''); }
-
-          //Prepend repos
-        }));
-      };
-    };
+    function populateRepos() {
+      $wrappend.append('');
+      _.each(app.repos, function(repo){
+        $wrappend.prepend( app.templates['repoTemplate'](repo) );
+      });
+    }
 
     function initialize() {
       self.delegateEvents();
+
+      app.repos = new app.collections.Repos().fetch();
+      populateRepos();
     }
 
     initialize();
