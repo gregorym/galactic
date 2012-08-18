@@ -18,4 +18,4 @@
       });
     }
   });
-}).apply(starboard);
+}).apply(galactic);
