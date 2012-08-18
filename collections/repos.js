@@ -4,7 +4,15 @@
 
   app.collections.Repos = Backbone.Collection.extend({
     model: app.models.Repo,
-    url: ('https://api.github.com/users/' + app.current_user + '/watched'),
+    initialize: function(max_page){
+      this.url = ('https://api.github.com/users/' + app.current_user + '/watched');
+      console.log(max_page);
+
+      for (var i = 1; i <= max_page; i++) {
+        this.fetch({add: true, data: {page: i}})  
+      };
+
+    },
 
     privateRepos: function() {
       return _.filter(models, function(repo){
