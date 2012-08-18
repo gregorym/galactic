@@ -1,9 +1,8 @@
 var galactic = window.galactic || {};
 _(galactic).extend({
-  $el: function() {
-    return $('#wrapper');
-  },
+  $el: $('#wrapper'),
   history: window.history,
   location: window.location,
-  current_user: null
+  current_user: null,
+  repos: null
 });
