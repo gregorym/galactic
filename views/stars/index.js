@@ -5,7 +5,7 @@
   app.views.stars.Index = function(options) {
     options = options || {};
     var base = {
-      el: 'i#site-container .browser.stars-browser.columns'
+      el: '#site-container .browser.stars-browser.columns'
     };
     var self = new (Backbone.View.extend(base))(options);
     var $el = $(self.el);
