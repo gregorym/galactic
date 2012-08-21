@@ -15,16 +15,19 @@
     };
 
     function populateRepos() {
-      $wrappend.append('');
-      _.each(app.repos, function(repo){
-        $wrappend.prepend( app.templates['repoTemplate'](repo) );
-      });
+      $wrapper.replaceWith('<div class="column main"></div>');
+      for (var i = app.models.length - 1; i >= 0; i--) {
+        console.log(app.models[i]);
+      };
+
+      //_.each(app.repos.models, function(repo){
+        //$wrapper.append( app.templates['repoTemplate'](repo) );
+      //});
     }
 
     function initialize() {
       self.delegateEvents();
 
-      app.repos = new app.collections.Repos().fetch();
       populateRepos();
     }
 

@@ -12,15 +12,9 @@
       };
     },
 
-    privateRepos: function() {
-      return _.filter(models, function(repo){
-        return (repo.private === true)
-      });
-    },
-
-    publicRepos: function() {
-      return _.filter(models, function(repo){
-        return (repo.private === false)
+    search: function (word) {
+      _.select(this.models, function(repo) {
+        return repo;
       });
     }
   });
