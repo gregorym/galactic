@@ -12,8 +12,16 @@
     var search_field;
 
     self.events = {
+      '#search_field keyup': onKeyUp'
     };
 
+    function onKeyUp(){
+      if (search_field.val().length >= 30){
+        // search...	
+      }else{
+        // do nothing or go back to full listing
+      }
+    }  
 
     function render() {
       search_field = $("<input type=text>").attr('placeholder', 'Find a Repository…').attr('class', 'filter_input').attr('id', 'search_field');
