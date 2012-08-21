@@ -9,9 +9,16 @@
     };
     var self = new (Backbone.View.extend(base))(options);
     var $el = $(self.el);
+    var search_field;
 
     self.events = {
     };
+
+
+    function render() {
+      search_field = $("<input type=text>").attr('placeholder', 'Find a Repository…').attr('class', 'filter_input').attr('id', 'search_field');
+      $el.append(search_field);
+    }
 
     function initialize() {
       self.delegateEvents();
