@@ -12,7 +12,7 @@
     var search_field;
 
     self.events = {
-      '#search_field keyup': onKeyUp'
+      '#search_field keyup': 'onKeyUp'
     };
 
     function onKeyUp(){
