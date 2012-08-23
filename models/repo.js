@@ -13,6 +13,10 @@
       }else{
         this.set('icon', 'mega-icon-public-repo');
       }
+    },
+
+    matches: function(text){
+      return (get('full_name').match(text) || get('description').match(text))
     }
   });
 }).apply(galactic);

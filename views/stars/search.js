@@ -5,28 +5,30 @@
   app.views.stars.Search = function(options) {
     options = options || {};
     var base = {
-      el: '#site-container .browser.stars-browser.columnsi .column.sidebar'
+      el: '#site-container .browser.stars-browser.columns .column.sidebar',
+      search_field_id: '#search_field',
+      render: function(){
+        var search_field = $("<input type=text>").attr('placeholder', 'Find a Repository…').attr('class', 'filter_input').attr('id', 'search_field');
+        $el.prepend(search_field);
+      }
     };
     var self = new (Backbone.View.extend(base))(options);
     var $el = $(self.el);
-    var search_field;
-
+    
     self.events = {
-      '#search_field keyup': 'onKeyUp'
+      'keyup #search_field': 'onKeyUp'
     };
 
-    function onKeyUp(){
-      if (search_field.val().length >= 30){
-        // search...	
+    self.onKeyUp = function (e){
+      var text_field = $(e.currentTarget);
+      console.log(text_field.val());
+
+      if (text_field.val().length >= 3){
+        $('div[id^="repo-"]').trigger('repo:filter', text_field.val());	
       }else{
-        // do nothing or go back to full listing
+        $('div[id^="repo-"]').trigger('repo:show');
       }
     }  
-
-    function render() {
-      search_field = $("<input type=text>").attr('placeholder', 'Find a Repository…').attr('class', 'filter_input').attr('id', 'search_field');
-      $el.append(search_field);
-    }
 
     function initialize() {
       self.delegateEvents();
