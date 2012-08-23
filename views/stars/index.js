@@ -17,7 +17,7 @@
     function populateRepos() {
       $wrapper.html('');
      app.repos.each(function(repo){
-        
+        new app.views.stars.Repo().render(repo);
       });
     }
 
@@ -29,6 +29,7 @@
       };
 
       $.when.apply($, deferreds).done(function() {
+        app.repos.models.reverse();
         populateRepos();
       });
     }
