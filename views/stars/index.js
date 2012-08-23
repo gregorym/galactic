@@ -15,17 +15,27 @@
     };
 
     function populateRepos() {
-      $wrappend.append('');
-      _.each(app.repos, function(repo){
-        $wrappend.prepend( app.templates['repoTemplate'](repo) );
+      $wrapper.html('');
+     app.repos.each(function(repo){
+        
+      });
+    }
+
+    function fetchRepos(){
+      app.repos = new galactic.collections.Repos();
+      var deferreds = [];
+      for (var i = 1; i <= 7; i++) {
+        deferreds.push(galactic.repos.fetch({add: true, data: {page: i}}));
+      };
+
+      $.when.apply($, deferreds).done(function() {
+        populateRepos();
       });
     }
 
     function initialize() {
       self.delegateEvents();
-
-      app.repos = new app.collections.Repos().fetch();
-      populateRepos();
+      fetchRepos();
     }
 
     initialize();
