@@ -16,7 +16,7 @@
     },
 
     matches: function(text){
-      return (get('full_name').match(text) || get('description').match(text))
+      return (this.get('full_name').match(text)); // || this.get('description').match(text))
     }
   });
 }).apply(galactic);

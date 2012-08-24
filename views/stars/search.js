@@ -21,8 +21,7 @@
 
     self.onKeyUp = function (e){
       var text_field = $(e.currentTarget);
-      console.log(text_field.val());
-
+      
       if (text_field.val().length >= 3){
         $('div[id^="repo-"]').trigger('repo:filter', text_field.val());	
       }else{
