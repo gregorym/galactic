@@ -9,21 +9,22 @@
 "content_scripts": [
     {
       "matches": ["https://github.com/stars"],
+      "css": ["css/galactic.css"],
       "js": [
         "lib/jquery.js",
         "lib/underscore.js",
         "lib/backbone.js",
-        "lib/handlebar.js",
-        "lib/github.js",
         
         "galactic.js",
 
-        "models/user.js",
-        "models/repo.js",
+        "app/models/user.js",
+        "app/models/repo.js",
 
-        "collections/repos.js",
+        "app/collections/repos.js",
 
-        "views/stars/index.js",
+        "app/views/stars/search.js",
+        "app/views/stars/repo.js",
+        "app/views/stars/index.js",
 
         "page.js"
       ]

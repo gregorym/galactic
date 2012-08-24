@@ -1,0 +1,9 @@
+#search_field {
+  width: 100%;
+  padding: 3px 12px;
+  border: 1px solid #CCC;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  box-sizing: border-box;
+  outline: 0;
+}

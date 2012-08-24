@@ -16,7 +16,10 @@
     },
 
     matches: function(text){
-      return (this.get('full_name').match(text)); // || this.get('description').match(text))
+      return (
+        this.get('full_name').toLowerCase().match(text) || 
+        this.get('description').toLowerCase().match(text)
+      )
     }
   });
 }).apply(galactic);

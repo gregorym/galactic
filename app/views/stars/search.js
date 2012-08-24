@@ -5,7 +5,7 @@
   app.views.stars.Search = function(options) {
     options = options || {};
     var base = {
-      el: '#site-container .browser.stars-browser.columns .column.sidebar',
+      el: '#site-container .browser.stars-browser.columns .columns.sidebar',
       search_field_id: '#search_field',
       render: function(){
         var search_field = $("<input type=text>").attr('placeholder', 'Find a Repository…').attr('class', 'filter_input').attr('id', 'search_field');
