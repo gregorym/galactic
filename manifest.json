@@ -2,7 +2,7 @@
   "name": "Galactic",
   "version": "1.0",
   "manifest_version": 2,
-  "description": "The first extension that I made.",
+  "description": "Advanced starred repositories for Github",
   "permissions": [
     "https://github.com/stars"
   ],
