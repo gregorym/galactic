@@ -19,20 +19,6 @@
     var self = new (Backbone.View.extend(base))(options);
     var $el = $(self.el);
     self.events = {
-      'repo:filter': 'filterRepo',
-      'repo:show': 'showRepo'
-    };
-
-    self.filterRepo = function(e, text) {
-      if (self.model.matches(text)) {
-        $el.show();
-      }else{
-        $el.hide();
-      }
-    }
-
-    self.showRepo = function(){
-      $el.show();
     }
 
     function initialize(){

@@ -12,17 +12,64 @@
     var $wrapper = $el.find('.columns.main');
 
     self.events = {
-      'click .filter-list .filter-item': 'sidebarFilterign'
+      'click .filter-list .filter-item': 'sidebarFiltering',
+      'repo:filter': 'filterRepo',
+      'repo:show:all': 'showAll',
+      'repo:show:public': 'showPublic',
+      'repo:show:private': 'showPrivate'
     };
 
-    self.sidebarFilterign = function(e){
+    self.sidebarFiltering = function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      
+      var target = $(e.currentTarget);
+      $el.find('.filter-list .filter-item').removeClass('selected');
+      target.addClass('selected');
 
+      switch(target.text()){
+        case 'Public':
+          $el.trigger('repo:show:public');
+          break;
+        case 'Private':
+          $el.trigger('repo:show:private');
+          break;
+        default:
+          $el.trigger('repo:show:all');
+          break;
+      }
     }
 
-    function populateRepos() {
-      console.log($wrapper);
+    self.filterRepo = function(e, text) {
+      populateRepos( app.repos.select(function(r){
+        if (r.matches(text)){
+          console.log(r);
+          return r;
+        }
+      }) );
+    }
+
+    self.showPublic = function(){
+      populateRepos( app.repos.select(function(r){
+        if (r.isPublic())
+          return r;
+      }) );
+    }
+
+    self.showPrivate = function(){
+      populateRepos( app.repos.select(function(r){
+        if (r.isPrivate())
+          return r;
+      }) );
+    }
+
+    self.showAll = function(){
+      populateRepos(app.repos.models);
+    }
+
+    function populateRepos(models){
       $wrapper.html('');
-      app.repos.each(function(repo){
+      _.each(models, function(repo){
         new app.views.stars.Repo().render(repo);
       });
     }
@@ -36,8 +83,7 @@
       };
 
       $.when.apply($, deferreds).done(function() {
-        //app.repos.models.reverse();
-        populateRepos();
+        populateRepos(app.repos.models.reverse());
         new app.views.stars.Search().render();
       });
     }

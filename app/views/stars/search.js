@@ -25,7 +25,7 @@
       if (text_field.val().length >= 3){
         $('div[id^="repo-"]').trigger('repo:filter', text_field.val());	
       }else{
-        $('div[id^="repo-"]').trigger('repo:show');
+        $('div[id^="repo-"]').trigger('repo:show:all');
       }
     }  
 
