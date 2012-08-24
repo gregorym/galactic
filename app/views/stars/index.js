@@ -12,7 +12,12 @@
     var $wrapper = $el.find('.column.main');
 
     self.events = {
+      'click .filter-list .filter-item': 'sidebarFilterign'
     };
+
+    self.sidebarFilterign = function(e){
+
+    }
 
     function populateRepos() {
       $wrapper.html('');
