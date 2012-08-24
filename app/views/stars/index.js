@@ -12,23 +12,38 @@
     var $wrapper = $el.find('.column.main');
 
     self.events = {
+      'click .filter-list .filter-item': 'sidebarFilterign'
     };
 
+    self.sidebarFilterign = function(e){
+
+    }
+
     function populateRepos() {
-      $wrapper.replaceWith('<div class="column main"></div>');
-      for (var i = app.models.length - 1; i >= 0; i--) {
-        console.log(app.models[i]);
+      $wrapper.html('');
+     app.repos.each(function(repo){
+        new app.views.stars.Repo().render(repo);
+      });
+    }
+
+    function fetchRepos(){
+      app.repos = new galactic.collections.Repos();
+      var deferreds = [];
+      for (var i = 1; i <= 7; i++) {
+        deferreds.push(galactic.repos.fetch({add: true, data: {page: i}}));
       };
 
-      //_.each(app.repos.models, function(repo){
-        //$wrapper.append( app.templates['repoTemplate'](repo) );
-      //});
+      $.when.apply($, deferreds).done(function() {
+        app.repos.models.reverse();
+        populateRepos();
+      });
     }
 
     function initialize() {
       self.delegateEvents();
 
       populateRepos();
+      fetchRepos();
     }
 
     initialize();
