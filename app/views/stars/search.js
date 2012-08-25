@@ -30,7 +30,7 @@
     }  
 
     function removePublicPrivateLinks(){
-      $el.find('.filter-list li:nth-child(1n)').fadeOut('fast');      
+      $el.find('.filter-list li:not(:first-child)').fadeOut('fast');      
     }
 
     function initialize() {

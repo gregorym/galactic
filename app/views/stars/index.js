@@ -61,7 +61,7 @@
       };
 
       $.when.apply($, deferreds).done(function() {
-        populateRepos(app.repos.models.reverse());
+        populateRepos(app.repos.sortBy(function(r){return r.get('watchers')})) ;
         new app.views.stars.Search().render();
       });
     }
