@@ -13,32 +13,15 @@
 
     self.events = {
       'repo:filter': 'filterRepo',
-      'repo:show:all': 'showAll',
-      'repo:show:public': 'showPublic',
-      'repo:show:private': 'showPrivate'
+      'repo:show:all': 'showAll'
     };
     
     self.filterRepo = function(e, text) {
       populateRepos( app.repos.select(function(r){
         if (r.matches(text)){
-          console.log(r);
           return r;
         }
-      }) );
-    }
-
-    self.showPublic = function(){
-      populateRepos( app.repos.select(function(r){
-        if (r.isPublic())
-          return r;
-      }) );
-    }
-
-    self.showPrivate = function(){
-      populateRepos( app.repos.select(function(r){
-        if (r.isPrivate())
-          return r;
-      }) );
+      }));
     }
 
     self.showAll = function(){
@@ -47,7 +30,9 @@
 
     function populateRepos(models){
       $wrapper.html('');
-      _.each(models, function(repo){
+      
+      var sorted_models = _.sortBy(models, function(r){return r.get('watchers')});
+      _.each(sorted_models, function(repo){
         new app.views.stars.Repo().render(repo);
       });
     }
@@ -61,7 +46,7 @@
       };
 
       $.when.apply($, deferreds).done(function() {
-        populateRepos(app.repos.sortBy(function(r){return r.get('watchers')})) ;
+        populateRepos(app.repos.models) ;
         new app.views.stars.Search().render();
       });
     }

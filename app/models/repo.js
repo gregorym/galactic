@@ -20,14 +20,6 @@
         this.get('full_name').toLowerCase().match(text) || 
         this.get('description').toLowerCase().match(text)
       )
-    },
-
-    isPublic: function(){
-      return this.get('private') === false
-    },
-
-    isPrivate: function(){
-      return this.get('private') === true
     }
   });
 }).apply(galactic);
