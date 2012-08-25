@@ -12,34 +12,12 @@
     var $wrapper = $el.find('.columns.main');
 
     self.events = {
-      'click .filter-list .filter-item': 'sidebarFiltering',
       'repo:filter': 'filterRepo',
       'repo:show:all': 'showAll',
       'repo:show:public': 'showPublic',
       'repo:show:private': 'showPrivate'
     };
-
-    self.sidebarFiltering = function(e){
-      e.preventDefault();
-      e.stopPropagation();
-      
-      var target = $(e.currentTarget);
-      $el.find('.filter-list .filter-item').removeClass('selected');
-      target.addClass('selected');
-
-      switch(target.text()){
-        case 'Public':
-          $el.trigger('repo:show:public');
-          break;
-        case 'Private':
-          $el.trigger('repo:show:private');
-          break;
-        default:
-          $el.trigger('repo:show:all');
-          break;
-      }
-    }
-
+    
     self.filterRepo = function(e, text) {
       populateRepos( app.repos.select(function(r){
         if (r.matches(text)){

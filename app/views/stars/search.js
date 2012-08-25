@@ -29,8 +29,13 @@
       }
     }  
 
+    function removePublicPrivateLinks(){
+      $el.find('.filter-list li:nth-child(1n)').fadeOut('fast');      
+    }
+
     function initialize() {
       self.delegateEvents();
+      removePublicPrivateLinks();
     }
 
     initialize();
