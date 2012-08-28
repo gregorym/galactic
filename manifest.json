@@ -19,7 +19,9 @@
 
         "app/models/user.js",
         "app/models/repo.js",
+         "app/models/tag.js",
 
+        "app/collections/tags.js",
         "app/collections/repos.js",
 
         "app/views/stars/search.js",
