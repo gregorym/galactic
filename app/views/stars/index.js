@@ -47,7 +47,6 @@
 
       $.when.apply($, deferreds).done(function() {
         populateRepos(app.repos.models) ;
-        new app.views.stars.Search().render();
       });
     }
 
@@ -59,6 +58,7 @@
       }));
 
       fetchRepos(last_page);
+      new app.views.stars.Search().render(); 
     }
 
     initialize();
